@@ -1,0 +1,32 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: YOUR_CLOUD_RUN_SERVICE
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: YOUR_RUNTIME_SERVICE_ACCOUNT@YOUR_PROJECT_ID.iam.gserviceaccount.com
+      containers:
+        - image: us-docker.pkg.dev/YOUR_PROJECT_ID/YOUR_ARTIFACT_REPOSITORY/YOUR_IMAGE:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+            - name: APP_ENV
+              value: production
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+  traffic:
+    - percent: 100
+      latestRevision: true

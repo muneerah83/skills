@@ -60,6 +60,10 @@ To use any skill from this repository or upload custom skills, follow the instru
 
 You can use Anthropic's pre-built skills, and upload custom skills, via the Claude API. See the [Skills API Quickstart](https://docs.claude.com/en/api/skills-guide#creating-a-skill) for more.
 
+## Google Cloud Deployment
+
+This repository now includes a GitHub Actions workflow and template files for connecting the repo to Google Cloud and deploying to Cloud Run with Workload Identity Federation. See [docs/google-cloud-run-setup.md](./docs/google-cloud-run-setup.md) for setup steps and [deploy/cloud-run/service.template.yaml](./deploy/cloud-run/service.template.yaml) for a sample service manifest.
+
 # Creating a Basic Skill
 
 Skills are simple to create - just a folder with a `SKILL.md` file containing YAML frontmatter and instructions. You can use the **template-skill** in this repository as a starting point:
