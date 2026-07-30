@@ -130,9 +130,10 @@ The workflow supports two patterns:
 ## 6. Trigger the workflow
 
 The workflow runs automatically on pushes to `main` when the required variables are present, and it can also be started manually with **Run workflow** in GitHub Actions.
-
+ 
 For a manual run you can override:
-
+ 
+- branch to deploy from
 - source directory
 - service name
 - region
