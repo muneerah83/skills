@@ -51,5 +51,15 @@
         "./skills/claude-api"
       ]
     }
+    ,
+    {
+      "name": "dvs-reporting",
+      "description": "Malaysian veterinary and livestock policy analysis in DVS/JPV/BPIT house style — four-mode routing, controlling Bahasa Malaysia lexicon with a blocking Indonesian-drift purity guard, tiered sourcing protocol, and blocking arithmetic and style verification gates",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/adaptive-research-reporting-dvs"
+      ]
+    }
   ]
 }

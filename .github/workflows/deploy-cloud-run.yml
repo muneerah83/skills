@@ -1,0 +1,153 @@
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to checkout and deploy from (defaults to the triggering branch)
+        required: false
+      source_directory:
+        description: Source directory to deploy relative to the repository root
+        required: false
+      service:
+        description: Override the Cloud Run service name
+        required: false
+      region:
+        description: Override the Google Cloud region
+        required: false
+      image:
+        description: Deploy this container image instead of building from source
+        required: false
+      manifest:
+        description: Cloud Run service manifest path relative to the repository root
+        required: false
+      allow_unauthenticated:
+        description: Allow public unauthenticated access during deploy
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: cloud-run-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+  REGION: ${{ inputs.region || vars.GCP_REGION }}
+  SERVICE: ${{ inputs.service || vars.CLOUD_RUN_SERVICE }}
+  SOURCE_DIRECTORY: ${{ inputs.source_directory || vars.CLOUD_RUN_SOURCE_DIRECTORY }}
+  IMAGE: ${{ inputs.image || vars.CLOUD_RUN_IMAGE }}
+  MANIFEST_PATH: ${{ inputs.manifest || vars.CLOUD_RUN_MANIFEST }}
+  WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+  SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+  ALLOW_UNAUTHENTICATED: ${{ inputs.allow_unauthenticated }}
+
+jobs:
+  deploy:
+    if: ${{ vars.GCP_PROJECT_ID != '' && vars.GCP_REGION != '' && vars.GCP_WORKLOAD_IDENTITY_PROVIDER != '' && vars.GCP_SERVICE_ACCOUNT != '' && (vars.CLOUD_RUN_SERVICE != '' || inputs.service != '' || vars.CLOUD_RUN_MANIFEST != '' || inputs.manifest != '') && (vars.CLOUD_RUN_SOURCE_DIRECTORY != '' || vars.CLOUD_RUN_IMAGE != '' || vars.CLOUD_RUN_MANIFEST != '' || inputs.source_directory != '' || inputs.image != '' || inputs.manifest != '') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch || github.ref_name }}
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -n "${MANIFEST_PATH}" ]]; then
+            test -f "${MANIFEST_PATH}"
+            gcloud run services replace "${MANIFEST_PATH}" \
+              --project "${PROJECT_ID}" \
+              --region "${REGION}" \
+              --quiet
+          else
+            if [[ -z "${SERVICE}" ]]; then
+              echo "CLOUD_RUN_SERVICE or workflow_dispatch input 'service' is required when no manifest is provided." >&2
+              exit 1
+            fi
+
+            deploy_args=(
+              run deploy "${SERVICE}"
+              "--project=${PROJECT_ID}"
+              "--region=${REGION}"
+              "--quiet"
+            )
+
+            if [[ -n "${IMAGE}" ]]; then
+              deploy_args+=("--image=${IMAGE}")
+            else
+              if [[ -z "${SOURCE_DIRECTORY}" ]]; then
+                echo "Set CLOUD_RUN_SOURCE_DIRECTORY, CLOUD_RUN_IMAGE, or CLOUD_RUN_MANIFEST before running this workflow." >&2
+                exit 1
+              fi
+              deploy_args+=("--source=${SOURCE_DIRECTORY}")
+            fi
+
+            if [[ "${ALLOW_UNAUTHENTICATED}" == "true" ]]; then
+              deploy_args+=("--allow-unauthenticated")
+            fi
+
+            gcloud "${deploy_args[@]}"
+          fi
+
+      - name: Resolve deployed service name
+        id: service
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          service_name="${SERVICE}"
+
+          if [[ -z "${service_name}" && -n "${MANIFEST_PATH}" ]]; then
+            service_name="$(python -c 'import os, pathlib, re; text = pathlib.Path(os.environ["MANIFEST_PATH"]).read_text(); match = re.search(r"(?ms)^metadata:\\s*\\n(?:[ \\t].*\\n)*?[ \\t]+name:\\s*[\"\\047]?([^\"\\047\\n]+)", text); print(match.group(1).strip() if match else "")')"
+          fi
+
+          if [[ -z "${service_name}" ]]; then
+            echo "Unable to determine the deployed service name." >&2
+            exit 1
+          fi
+
+          echo "name=${service_name}" >> "${GITHUB_OUTPUT}"
+
+      - name: Capture service URL
+        id: url
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          service_url="$(gcloud run services describe "${{ steps.service.outputs.name }}" \
+            --project "${PROJECT_ID}" \
+            --region "${REGION}" \
+            --format='value(status.url)')"
+
+          echo "service_url=${service_url}" >> "${GITHUB_OUTPUT}"
+          {
+            echo "### Cloud Run deployment"
+            echo ""
+            echo "- Service: \`${{ steps.service.outputs.name }}\`"
+            echo "- Region: \`${REGION}\`"
+            echo "- URL: ${service_url}"
+          } >> "${GITHUB_STEP_SUMMARY}"
