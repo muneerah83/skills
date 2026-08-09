@@ -1,0 +1,11 @@
+{
+    "client_type": "openai",
+    "model": "YOUR_MODEL_PATH",
+    "base_url": "http://localhost:8000/v1",
+    "api_key": "EMPTY",
+    "temperature": 0.5,
+    "max_tokens": 32768,
+    "top_p": 0.95,
+    "streaming_read_timeout": 60,
+    "standard_timeout": 1200
+}

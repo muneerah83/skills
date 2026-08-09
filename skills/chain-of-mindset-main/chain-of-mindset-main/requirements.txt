@@ -1,0 +1,21 @@
+# Core dependencies
+openai>=1.0.0
+tenacity>=8.0.0
+httpx>=0.24.0
+
+# Scientific computing (for Algorithmic mindset)
+numpy>=1.20.0
+pandas>=1.3.0
+scipy>=1.7.0
+sympy>=1.9
+
+# Visualization (for Spatial mindset)
+matplotlib>=3.5.0
+seaborn>=0.11.0
+pillow>=9.0.0
+networkx>=2.6
+
+# Utilities
+tqdm>=4.62.0
+requests>=2.26.0
+python-dotenv>=0.19.0
