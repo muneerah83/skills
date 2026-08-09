@@ -107,3 +107,111 @@ Pusat Pentadbiran Kerajaan Persekutuan,
 | `komersil` (variable) | `komersial` | throughout |
 | `Mt/ekor/Tahun` on `Makanan (Foder)` | `kg/tahun` | unit label contradicts the arithmetic |
 | `Pelbagai Perbelanjaan (5% daripada kos operasi)` | label ≠ computation (fixed base escalating 5%/yr) | correct the label or the formula, and say which |
+
+---
+
+## L11 — Ketulenan Bahasa Malaysia (Indonesian-drift guard)
+
+**Applies whenever the output language is Bahasa Malaysia. BLOCKING.**
+
+Write Bahasa Malaysia (Malaysian standard). Indonesian lexicon, orthography and calques are
+prohibited — **including forms that are merely comprehensible to Malaysian readers.** Government
+readers register Indonesian drift as an error of competence, not of style.
+
+### L11.1 — Ternakan, veterinar, makanan
+sapi → **lembu** · hewan → **haiwan** · peternak → **penternak** · peternakan → **penternakan** ·
+ternak *(noun)* → **ternakan** · domba → **bebiri / biri-biri** · pakan / pakan ternak →
+**makanan ternakan** · sapi perah → **lembu tenusu** · susu sapi → **susu lembu** · daging sapi →
+**daging lembu** · bibit → **baka** · pembibitan / pemuliaan → **pembiakbakaan** ·
+rumah potong hewan (RPH) → **rumah sembelih / abatoir** · padang penggembalaan → **padang ragut** ·
+wabah → **wabak** · dokter hewan → **doktor veterinar / pegawai veterinar** · kedokteran hewan →
+**perubatan veterinar** · obat → **ubat** · rumah sakit → **hospital** · laboratorium → **makmal** ·
+sel punca → **sel stem / sel induk** · pangan → **makanan** · ketahanan pangan →
+**keterjaminan makanan** · keamanan pangan → **keselamatan makanan** · swasembada →
+**sara diri / kadar sara diri (SSR)** · gizi → **nutrisi / pemakanan** · kesehatan → **kesihatan**
+
+### L11.2 — Analitik dan statistik
+penelitian → **penyelidikan / kajian** · peneliti → **penyelidik** · analisa → **analisis** ·
+rata-rata → **purata** · persen → **peratus** · persentase → **peratusan** ·
+simpangan baku / standar deviasi → **sisihan piawai** · variabel → **pemboleh ubah** ·
+koefisien → **pekali** · rasio → **nisbah** · frekuensi → **kekerapan** ·
+observasi / pengamatan → **cerapan** · temuan → **dapatan / penemuan** · proyeksi → **unjuran** ·
+prediksi / perkiraan → **ramalan** · asumsi → **andaian** · uji → **ujian** ·
+pengambilan sampel → **persampelan** · kisaran / rentang → **julat** ·
+tingkat → **tahap / aras / kadar** · galat / kesalahan → **ralat** · modus → **mod** ·
+produksi → **pengeluaran** · produsen → **pengeluar** · konsumen → **pengguna** ·
+distribusi → **pengedaran / pengagihan** · ekspor / impor → **eksport / import** ·
+dampak → **impak / kesan** · efisiensi → **kecekapan** · efektivitas → **keberkesanan** ·
+kinerja → **prestasi** · capaian → **pencapaian** · keberlanjutan → **kelestarian** ·
+berkelanjutan → **lestari / mampan** · limbah → **sisa / bahan buangan** · energi → **tenaga** ·
+listrik → **elektrik** · pasokan → **bekalan** · rantai pasok → **rantaian bekalan**
+
+### L11.3 — Pentadbiran dan institusi
+pemerintah → **kerajaan** · kebijakan → **dasar / polisi** · instansi / dinas →
+**agensi / jabatan** · lembaga → **badan / institusi** · perusahaan → **syarikat** ·
+karyawan → **kakitangan** · rapat → **mesyuarat** · notulen → **minit mesyuarat** ·
+pedoman → **garis panduan** · usulan / saran → **cadangan / saranan / syor** ·
+rekomendasi → **cadangan / syor** · implementasi → **pelaksanaan** · kepatuhan → **pematuhan** ·
+penegakan → **penguatkuasaan** · evaluasi → **penilaian** · tinjauan → **kajian semula** ·
+administrasi → **pentadbiran** · keuangan → **kewangan** · akuntansi → **perakaunan** ·
+pajak → **cukai** · asuransi → **insurans** · biaya → **kos** · investasi → **pelaburan** ·
+investor → **pelabur** · bisnis → **perniagaan** · manajemen → **pengurusan** · pabrik →
+**kilang** · kantor → **pejabat** · izin → **kebenaran / lesen / permit** · sertifikasi →
+**pensijilan** · informasi → **maklumat** · berkas → **fail** · daftar *(as list)* → **senarai** ·
+keterampilan → **kemahiran** · keahlian → **kepakaran** · pelatihan → **latihan** ·
+sumber daya manusia → **modal insan** · perguruan tinggi → **institusi pengajian tinggi** ·
+mahasiswa → **pelajar** · lulusan → **graduan** · kota → **bandar** · desa / pedesaan →
+**kampung / luar bandar** · wilayah → **kawasan / zon** · provinsi → **negeri** ·
+kabupaten → **daerah** · tim → **pasukan** · kemitraan → **perkongsian** · koordinasi →
+**penyelarasan** · sosialisasi → **penyebaran maklumat / taklimat** · insinyur → **jurutera** ·
+rekayasa genetika → **kejuruteraan genetik** · perangkat lunak → **perisian** ·
+unduh / unggah → **muat turun / muat naik** · seluler → **selular** · nomor → **nombor** ·
+uang → **wang** · mobil → **kereta**
+
+### L11.4 — Kata tugas dan ejaan
+yaitu / yakni → **iaitu** · karena → **kerana** · sedangkan → **manakala** ·
+oleh karena itu → **oleh itu / oleh yang demikian** · kenapa → **mengapa** · bisa → **boleh** ·
+sistim → **sistem**
+
+- `di mana` used as a relative pronoun → **REWRITE.** Calque; not formal BM.
+- `adalah merupakan` → **REWRITE.** Redundant.
+
+### L11.5 — False friends — meaning INVERTS between BM and Indonesian
+| Word | Bahasa Malaysia | Indonesian | Rule |
+|---|---|---|---|
+| `polisi` | policy | police | BM for police is **polis**. Never write `polisi` meaning police |
+| `pejabat` | office *(place)* | official *(person)* | for a person use **pegawai** |
+| `jabatan` | department | position / post | for a post use **jawatan** |
+| `kereta` | car | train | for train use **kereta api** |
+| `percuma` | free of charge | in vain / useless | — |
+| `anggaran` | estimate / allocation | budget | for budget use **bajet** or **peruntukan** |
+| `bilik` | room | booth / cubicle | — |
+| `banci` | census | pejorative | prefer **bancian** |
+| `budak` | child | slave | avoid entirely in formal text |
+
+### L11.6 — Context-sensitive — do NOT substitute blindly
+A naive find-and-replace over L11.1–L11.4 produces false positives. These three are the ones
+that actually recur:
+
+| Form | Ruling |
+|---|---|
+| `lingkungan` | Prohibited in the *environment* sense → **alam sekitar**. But `dalam lingkungan bidang kuasa` is accepted Malaysian legal/administrative idiom for *within the ambit of*. **Prefer `dalam bidang kuasa`** and the question does not arise |
+| `import` | **Correct BM.** Only bare `impor` is prohibited. Match on word boundary, never substring |
+| `saranan` | **Accepted BM** (see L11.3). Only bare `saran` is Indonesian. Likewise `sasaran` must not trip the sweep |
+
+Match on word boundaries throughout. `meningkat` does not contain `tingkat`; `berdaftar` is not
+`daftar`.
+
+### L11.7 — Accepted Malaysian government usage — do NOT "correct" these
+dapatan · cerapan · pemboleh ubah · sisihan piawai · kecenderungan · keterjaminan makanan ·
+sara diri · penternak · ternakan · bebiri · tenusu · pembiakbakaan · kesihatan gerompok ·
+persampelan · ujian lapangan · pengembangan *(as in Program Pengembangan Veterinar)* · rumusan ·
+syor · penguatkuasaan · kebolehlaksanaan · penyelarasan · modal insan
+
+### L11.8 — Mandatory final sweep
+Before emitting any Bahasa Malaysia output, scan the **complete draft** once against
+L11.1–L11.5, honouring the L11.6 exceptions. **Any prohibited form present = the draft has
+FAILED.** Correct it and re-scan. Do not emit and apologise afterwards.
+
+Where a shell is available, automate the sweep rather than reading for it — see
+`reference/sourcing-protocol.md` §5.3 for the script.

@@ -89,12 +89,83 @@ On any conflict across sources, tables, or sections — or any V-check failure:
 
 Never halt for instructions. Never silently pick one. Correct, apply, disclose.
 
+## S9 — Sourcing integrity (run against `reference/sourcing-protocol.md`)
+| # | Check |
+|---|---|
+| **X1** | Every claim is attributed to its correct tier — statutory/primary, internal record, agency publication, or media. No claim inherits authority from a tier above its origin |
+| **X2** | Where a legal or jurisdictional position is asserted, it rests on the **primary instrument**, not on a media restatement of it |
+| **X3** | No figure seen only in a search snippet is presented as verified; each is confirmed against a Tier 1 source or flagged in `Nota` |
+| **X4** | Every source class attempted is recorded, and every unreachable class is declared in the coverage block — never silently omitted |
+| **X5** | Internal records cited are traceable to a named file and version; no figure quoted from an ambiguous near-duplicate |
+| **X6** | Where a departmental public statement may exist on the same issue and could not be read, that risk is stated |
+
+An unflagged figure is, by construction, a figure the department is prepared to defend. Flag
+accordingly, or verify.
+
+## S10 — Single-language integrity (BLOCKING)
+
+One language governs the **entire** deliverable. Mixing is a failure even where each fragment is
+individually correct — it is the most common defect in e-mail-input drafts, where an officer
+reasons in one language and places the quotable line in the other.
+
+| # | Check |
+|---|---|
+| **G1** | Every heading, table header, caption, bullet, verdict line and closing block is in the document language |
+| **G2** | No question is answered in one language while an adjacent question is answered in the other |
+| **G3** | The quotable position line is in the **same** language as the reasoning that supports it |
+| **G4** | No heading in one language sits over a body in the other |
+| **G5** | Where both languages are required, **two complete single-language documents** exist carrying an identical argument — never one bilingual document |
+
+**Not mixing, and not to be "corrected":**
+- Untranslatable proper nouns — statute short titles (`Akta Binatang 1953 [Akta 647]`), agency
+  names, scheme names (`myGAP`), post titles, publication names.
+- First-use glosses under the lexicon rule — `lembu tenusu (dairy cattle)`, `fixed effects
+  (kesan tetap)`. A parenthesised gloss is not a switch of the running text.
+- A question reproduced **verbatim in the language it was asked**, before being answered in the
+  document language. A quoted question is a citation.
+- An internal covering remark that sits outside the answer body.
+
+Detect mechanically before printing — per-section function-word balance, not impression:
+
+```bash
+python3 - <<'PY'
+import re, sys
+BM = set("dan yang ini itu pada dengan untuk adalah akan tidak boleh perlu hendaklah "
+         "merupakan kepada daripada dalam oleh serta bagi iaitu manakala kerana".split())
+EN = set("the and this that with for is are will not can must should of to from in "
+         "by as which while because been have has".split())
+text = open(sys.argv[1], encoding='utf-8').read()
+# Numbered bibliography entries quote source titles verbatim and are exempt by rule.
+REF = re.compile(r'^\s*\d+\.\s')
+blocks = [b for b in re.split(r'\n\s*\n', text)
+          if len(b.split()) >= 12 and not REF.match(b)]
+tag = []
+for b in blocks:
+    w = re.findall(r"[A-Za-z']+", b.lower())
+    bm, en = sum(x in BM for x in w), sum(x in EN for x in w)
+    tag.append('BM' if bm > en else 'EN' if en > bm else '?')
+major = max(set(tag), key=tag.count) if tag else '?'
+odd = [(i, t, blocks[i][:70].replace('\n', ' ')) for i, t in enumerate(tag)
+       if t != major and t != '?']
+print(f'document language: {major}   blocks: {len(tag)}')
+print('S10 :', 'PASSED' if not odd else 'FAILED')
+for i, t, s in odd: print(f'   [{t}] block {i}: {s}…')
+sys.exit(1 if odd else 0)
+PY
+```
+
+Run it against extracted draft text. Every flagged block is either a genuine language switch —
+rewrite it — or one of the four exemptions above, in which case confirm and move on.
+
 ## S8 — Final pre-print sweep
 - [ ] Mode correct for audience × stakes
 - [ ] Rigor level justified by contestation, not data volume
 - [ ] No inferential statistics deployed against an uncontested finding
-- [ ] Language matches the audience, not the request
+- [ ] Language matches the audience, not the request — and a media outlet's own publication medium
+- [ ] **S10 single-language integrity passed (G1–G5) — no mixing anywhere in the deliverable**
 - [ ] Lexicon compliant; no L10 source errors propagated
+- [ ] **L11 purity sweep run and PASSED — zero Indonesian forms, L11.6 exceptions honoured**
+- [ ] **Sourcing checks X1–X6 passed; coverage declaration present in `Nota`**
 - [ ] No individuals named
 - [ ] All ten verification checks passed
 - [ ] Reconciliations disclosed in `Nota`

@@ -53,6 +53,55 @@ SUMBER RUJUKAN                         ← numbered, full citations
 [Bahagian / Jabatan]
 ```
 
+### Channel: E-mel  (Mode C decimal skeleton)
+
+Use when the deliverable is **input for an e-mail reply** that another unit will collate and
+forward — a forwarded message carrying numbered questions, a request for *cadangan jawapan*, a
+named collating unit, a reply-by date. Mode B content rules still bind: per-claim citation,
+categorical disambiguation as an equation, a closing position. **Single language throughout.**
+
+```
+[KOP: JABATAN / BAHAGIAN]
+[TAJUK — subject of the enquiry]
+
+Kepada        : [collating unit / post — never an individual]
+Daripada      : [originating section, bahagian]
+Tarikh        : [DD Bulan YYYY]
+Rujukan       : [enquiring outlet + medium]  ← sets the output language
+Status        : Cadangan jawapan — untuk semakan dan kelulusan
+
+1.0  TUJUAN
+     — one sentence: input supplied for questions received from [outlet]
+
+2.0  NOTA PEMBETULAN PREMIS            ← only where a question's premise is factually wrong
+     2.1 the premise as stated
+     2.2 the correction, with the primary instrument cited
+     2.3 [DISAMBIGUATION AS AN EQUATION]
+     2.4 the sentence the collating unit may quote verbatim
+
+3.0  JAWAPAN                            ← one numbered subsection per question asked
+     3.1  Soalan 1  — [question verbatim]
+          Jawapan   — position first, then evidence, each claim cited
+     3.2  Soalan 1(a) …
+     3.3  Soalan 2 …
+
+4.0  RINGKASAN PENDIRIAN                ← the closing position, ✓/✗ contrast where it earns it
+
+5.0  TINDAKAN                           ← numbered, owned by unit/post, dated
+
+6.0  NOTA
+     6.1 Nota Pembetulan Data           ← only if reconciliation was triggered
+     6.2 Nota Sumber                    ← coverage declaration; unreachable classes named
+     6.3 Sumber Rujukan                 ← numbered, full citations
+
+[Nama Seksyen, Bahagian]
+[Jabatan]
+- Tamat -
+```
+
+Questions are reproduced **verbatim in the language they were asked**, then answered in the
+document language. A quoted question is a citation, not a language switch.
+
 ### Channel: Slaid
 ```
 1  Tajuk & penceramah

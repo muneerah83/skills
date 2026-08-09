@@ -14,8 +14,11 @@ description: >-
   note or slide deck touching food security / SSR / kedaulatan makanan / cultured meat /
   import strategy, or any Bahasa Malaysia government livestock/agriculture analysis — even
   if the user never names the department, never says "skill", and even if they simply paste
-  raw data or a title and ask for a report. Prefer this skill over answering from memory
-  for any of the above.
+  raw data or a title and ask for a report. Also governs the evidence-gathering that precedes
+  such a deliverable — searching departmental Google Drive and OneDrive/SharePoint, Hansard,
+  Undang-undang Malaysia, DOSM and agency sources — and enforces a blocking Bahasa Malaysia
+  purity sweep against Indonesian drift. Prefer this skill over answering from memory for any
+  of the above.
 ---
 
 # Adaptive Research & Reporting — DVS / BPIT
@@ -95,22 +98,68 @@ Ambiguous between A and B → ask which body receives it. That one answer decide
 |---|---|
 | read at/before a meeting; must survive being forwarded without you | **Nota** — scannable ✓/✗ tables, per-claim citation to source *and page/slide* |
 | presented from a podium to a mixed/senior audience | **Slaid** — rhetorical hook, large data callouts, borrowed frameworks, international benchmarking, case study, one thesis threaded throughout |
+| supplied as **input to an e-mail reply** that another unit will collate and forward | **E-mel** — the Mode C decimal skeleton (1.0, 2.0, …), one numbered section per question asked, single language throughout |
 
-Both channels carry the **same argument and verdict**; only compression and citation density differ.
+All channels carry the **same argument and verdict**; only compression, citation density and
+container differ.
+
+**Route to channel E-mel when the request is to answer questions carried in an e-mail** — the
+signals are a forwarded message with numbered questions, a request for *cadangan jawapan* or
+*input bagi soalan*, a named collating unit, and a reply-by date. The deliverable is departmental
+input for onward transmission, not the public statement itself, so it takes the decimal record
+skeleton rather than the meeting-note skeleton. The **content rules of Mode B still bind**:
+per-claim citation, categorical disambiguation stated as an equation, and a closing position.
 
 ### Step 5 — Output language follows the AUDIENCE, not the request
 | Audience | Language |
 |---|---|
 | KPKM, JAKIM, KKM, DVS internal, state departments, Malaysian industry, statutory record | **Bahasa Malaysia** |
 | ASEAN/regional, international agencies, academic journals, foreign counterparts | **English** |
+| A media outlet | **the outlet's own publication medium** — see below |
 | Explicit instruction | overrides the above |
 
 A request written in English does **not** make the output English. A KPKM roundtable note is
 in Bahasa Malaysia even if commissioned in English.
 
+**Media outlets are decided by publication medium, not by nationality.** An English-medium
+Malaysian title (e.g. The Edge) receives English; a BM-medium title receives Bahasa Malaysia.
+Supplying answers in a language the outlet must translate cedes control of the department's exact
+wording on a position it will be quoted on — which is the whole purpose of Mode B.
+
+**SINGLE-LANGUAGE RULE — BLOCKING.** Once selected, the language governs the **entire**
+deliverable: every heading, table, caption, bullet, verdict line and closing block. Mixing is
+prohibited even where each fragment is individually correct.
+
+- Do **not** answer one question in Bahasa Malaysia and the next in English.
+- Do **not** reason in one language and place the quotable line in the other.
+- Do **not** carry a Bahasa Malaysia heading over an English body, or the reverse.
+- Untranslatable proper nouns — statute short titles, agency names, scheme names, post titles —
+  stay in their official form in either language and do **not** constitute mixing.
+- The **first-use glossing rule stands** (`lembu tenusu (dairy cattle)`, `fixed effects (kesan
+  tetap)`). A parenthesised gloss is not mixing; a switch of the running text is.
+- Where an internal covering remark accompanies the deliverable, it sits **outside** the answer
+  body and never licenses a language switch inside it.
+
+Where both languages are genuinely required, produce **two complete single-language documents**
+carrying an identical argument. Never one bilingual document.
+
 ---
 
 ## SYNTHESIS METHOD (how to reason before templating)
+
+**0. Acquire the spine before reasoning on it.** Where the request needs facts you do not hold,
+run the sourcing protocol first (`reference/sourcing-protocol.md`). Four rules bind here and are
+restated because they change conclusions, not just citations:
+- **Source precedence is attributive.** Statutory/primary (Tier 1) · internal departmental
+  records (Tier 2) · agency publications (Tier 3) · media (Tier 4). A claim never inherits the
+  authority of a tier above the one it came from. Media establishes *that* an announcement was
+  made; only the primary instrument establishes *who holds the power*. Where the two diverge,
+  **the divergence is the finding.**
+- **Search internal drives and the public record in both languages.** A single-language query
+  silently halves the corpus.
+- **A figure seen only in a search snippet is not verified.** Confirm it against a reachable
+  Tier 1 source or carry it into `Nota` with an explicit flag.
+- **An unreachable source class is a declared coverage gap, never a silent omission.**
 
 **1. Data spine.**
 - Modes A, C run on internal administrative data repurposed for analysis (technical logs,
@@ -167,7 +216,8 @@ never silently pick one. (Full protocol + arithmetic checks: `reference/verifica
 
 | Load this file | When |
 |---|---|
-| `reference/lexicon.md` | producing ANY Bahasa Malaysia output — controlling vocabulary (L1–L9) and the list of published-source errors NOT to propagate (L10) |
+| `reference/sourcing-protocol.md` | BEFORE reasoning, whenever facts must be gathered — source precedence tiers, Google Drive and OneDrive/SharePoint procedure, WebSearch/WebFetch with known blocks, Bash extraction and verification scripts, mandatory coverage declaration |
+| `reference/lexicon.md` | producing ANY Bahasa Malaysia output — controlling vocabulary (L1–L9), published-source errors NOT to propagate (L10), and the **blocking Indonesian-drift purity guard (L11)** |
 | `reference/mode-templates.md` | once the mode is selected — the exact output skeleton for Mode A / B(Nota\|Slaid) / C / D |
 | `reference/verification-gate.md` | before printing ANY draft — style checks S1–S8, arithmetic gate V1–V10, full reconciliation protocol, banned-hedge → required-action table |
 
